@@ -54,3 +54,9 @@ let returnedFunc=cal('sub',2,3);
 // returnedFunc();
 
 
+// IIFE --> Imediately invoke function expression
+
+let additionLife = (function add(a,b) {
+    console.log(a+b)
+})(10,1)
+// console.log(additionLife);
