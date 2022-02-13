@@ -24,22 +24,33 @@ function abcd(){
     console.log('this is funtion expreesion')
 }
 // sayHi()
-console.log(""+abcd)
-abcd()
+// console.log(""+abcd)
+// abcd()
 
-
+// function sub(){
+//     return a-b;
+// } {
+    
+// }
 // js be like:- hmare yha ese hi hota h
 
 
 function cal(str,a,b) {
     if(str=='add'){
-        return function add(a,b) {
+        return function add() {
             console.log(a+b)
                 
         }
 
+
+    }else if(str=='sub'){
+        return function sub(){
+            console.log(a-b);
+        }
     }
 }
-let returnedFunc=cal('add',2,3);
-console.log(returnedFunc)
-returnedFunc();
+let returnedFunc=cal('sub',2,3);
+// console.log(returnedFunc)
+// returnedFunc();
+
+
