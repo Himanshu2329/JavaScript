@@ -43,5 +43,3 @@ let array2d=[
 console.log(array2d);
 console.table(array2d);
 console.log(array2d[1][2]);
-
-
