@@ -29,3 +29,9 @@ console.log(cons);
 
 let contactstr=str1.concat(str2)
 console.log(contactstr);
+
+// trim method :- removes all the white spaces
+let trimstr="                    hello               "
+
+console.log(trimstr);
+console.log(trimstr.trim());
