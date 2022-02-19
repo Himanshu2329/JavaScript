@@ -35,3 +35,5 @@ let trimstr="                    hello               "
 
 console.log(trimstr);
 console.log(trimstr.trim());
+
+
