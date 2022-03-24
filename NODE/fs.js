@@ -2,7 +2,7 @@
 const fs = require("fs");//require("path_of_the_file");
 // console.log(fs);
 // const f1 = require("./f1.txt");
-const obj = require("../JS/temp");
+const obj = require("../temp");
 //require method , goes to the file that is needed to be required. executes that file. and if there is something that is exported we get that in variable 'abc'
 console.log(obj);
 let ans = obj.add(45, 4);
