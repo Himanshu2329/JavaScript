@@ -8,8 +8,8 @@ const fs = require("fs");
 // console.log(input);
 let inputArr = process.argv.slice(2);
 // console.log(inputArr);
-let filesArr = [];
-let optionsArr = [];
+let filesArr = [];let optionsArr = [];
+
 //===============> placed files path in filesArr <=============
 for (let i = 0; i < inputArr.length; i++){
     let firstChar = inputArr[i].charAt(0);
@@ -38,7 +38,7 @@ let content = "";
 for (let i = 0; i < filesArr.length; i++){
     let fileContent = fs.readFileSync(filesArr[i]);
     content = content + fileContent + "\n";  // "\r\n" for windows laptop
-                     
+    
 }
 console.log(content);
 
@@ -66,27 +66,76 @@ if (isSPresent) {
     }
     console.log("data agter removing extra line ",temp);
 }    
-    
+
 //     //push everything in tempArr except null
 //     for (let i = 0; i < contentArr.length; i++){
-//         if (contentArr[i] != null) {
-//             tempArr.push(contentArr[i]);
-//         }
-//     }
-//     // console.log("data after removing extra lines\n",tempArr);
-//     contentArr = tempArr;
-// }
+    //         if (contentArr[i] != null) {
+        //             tempArr.push(contentArr[i]);
+        //         }
+        //     }
+        //     // console.log("data after removing extra lines\n",tempArr);
+        //     contentArr = tempArr;
+        // }
+        
+        
 
+    let indexOfN=optionsArr.indexOf("-n");
+    let indexOfB=optionsArr.indexOf("-b");
+    
+    //if -n or -b is not found , -1 will returned 
+    let finalOption=""
+    // if both -n and -b are present
+if(indexOfN!=-1&&indexOfB!=-1){
 
+    if(indexOfN<indexOfB){
+        finalOption="-n"
+    }else{
+        finalOption="-b"
+    }
+}
+// either -n is present or -b is present
+else{
+    if(indexOfN!=-1){
+        finalOption="-n"
+    }else if(indexOfB!=-1){
+        finalOption="-b"
+    }
+}
+// calling of function by evaluating finalOption 
+if (finalOption=="-n") {
+    modifyContentByN();
+} else if(finalOption=="-b") {
+    modifyContentByB();
+}
 
-// let indexOfN = optionsArr.indexOf("-n");
-// let indexOfB = optionsArr.indexOf("-b");
-// //if -n or -b is not found , -1 is returned
+function modifyContentByN() {
+    for(let i=0;i<contentArr.length;i++){
+        contentArr[i]=(i+1)+") "+contentArr[i];
+    }
+}
+function modifyContentByB() {
+    let count=1;
+    for(let i=0;i<contentArr.length;i++){
+        if(contentArr[i]!=""){
 
-// let finalOption = "";
-// //if both -n and -b are present 
-// if (indexOfN != -1 && indexOfB != -1) {
-//     if (indexOfN < indexOfB) {
+            contentArr[i]=count+") "+contentArr[i];
+            count++;
+        }
+    }
+}
+
+console.log(contentArr);
+        
+        
+        
+        // let indexOfN = optionsArr.indexOf("-n");
+        // let indexOfB = optionsArr.indexOf("-b");
+        // //if -n or -b is not found , -1 is returned
+        
+        // let finalOption = "";
+        // //if both -n and -b are present 
+        // if (indexOfN != -1 && indexOfB != -1) {
+            //     if (indexOfN < indexOfB) {
 //         finalOption = "-n";
 //     }
 //     else {
