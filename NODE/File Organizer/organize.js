@@ -21,8 +21,11 @@ organize=(srcPath)=>{
 
     let organizedPath= path.join(srcPath,"Organized_Files");
     console.log("organized files ke folder ka path",organizedPath);
-    fs.mkdirSync(organizedPath)
-    // else console.log(srcPath);
+    if(fs.existsSync(organizedPath)==false){
+        // exist nhi krta to folder bna do vrna rehnedo
+        fs.mkdirSync(organizedPath)
+    }     
+    else console.log("already exist");
 }
 // organize("./wcat/wcat.js");
 organize();
