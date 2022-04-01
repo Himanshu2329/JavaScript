@@ -19,13 +19,31 @@ organize=(srcPath)=>{
         console.log("source path is ",srcPath);
     }
 
+    //  2. create a directory->organized_files
     let organizedPath= path.join(srcPath,"Organized_Files");
     console.log("organized files ke folder ka path",organizedPath);
     if(fs.existsSync(organizedPath)==false){
         // exist nhi krta to folder bna do vrna rehnedo
-        fs.mkdirSync(organizedPath)
+        // fs.mkdirSync(organizedPath)
     }     
     else console.log("already exist");
+
+    //3. Scan the entire srcPath(Download folder in this case)
+
+    // only reads the content of the file(only names)
+    let allFiles=fs.readdirSync(srcPath); 
+    console.log(allFiles);
+
+
+    //4.  traverse over the files and classify them on the basis of their extension
+    for(let i=0;i<allFiles.length;i++){
+        // let extenFile= allFiles[i].split(".")[1]
+        let extenFile=path.extname(allFiles[i])
+        console.log(extenFile);
+    }
+
+
 }
+let srcPath="E:/Pepcoding/WebDevelopment/JS/NODE/File Organizer/Downloads"
 // organize("./wcat/wcat.js");
-organize();
+organize(srcPath);
