@@ -1,6 +1,6 @@
 //  entry point of my command line
 let helpfuntion=require("./help");
-console.log(helpfuntion.hathi());
+// console.log(helpfuntion.hathi());
 let inputArr=process.argv.slice(2);
 let command=inputArr[0];
 let path=inputArr[1];
