@@ -34,7 +34,7 @@ organize = (srcPath) => {
 
     // only reads the content of the file(only names)
     let allFiles = fs.readdirSync(srcPath);
-    console.log(allFiles);
+    // console.log(allFiles);
 
 
     //4.  traverse over the files and classify them on the basis of their extension
@@ -47,10 +47,10 @@ organize = (srcPath) => {
 
         // 1. check if it is a file or a folder
         //  lstatsync gives the information regarding the link provided
-        let isFile = fs.lstatSync(fullPathofFile).isFile();
-        // console.log(allFiles[i]+" is "+isFile);
+        let isThisIsFile = fs.lstatSync(fullPathofFile).isFile();
+        // console.log(allFiles[i]+" is "+isThisIsFile);
 
-        if (isFile) {
+        if (isThisIsFile) {
 
 
             // 1.1 get ext name
@@ -82,13 +82,13 @@ getFolderName = (extenFile) => {
             }
         }
     }
-    // return folder_name;
+    return "miscel";
 }
 
 copyFileToDest = (srcPath, fullPathofFile, folder_name) => {
     // 1. foolderName ka path bnana padega 
     let destFolder = path.join(srcPath, "Organized_Files", folder_name);
-    console.log(destFolder);
+    // console.log(destFolder);
     // 2. make folder if exists, if it does not, then make it
     if (fs.existsSync(destFolder) == false) {
         fs.mkdirSync(destFolder);
@@ -105,6 +105,9 @@ copyFileToDest = (srcPath, fullPathofFile, folder_name) => {
     // magic will happen bro
 }
 
-let srcPath = "E:/Pepcoding/WebDevelopment/JS/NODE/File Organizer/Downloads"
-// organize("./wcat/wcat.js");
-organize(srcPath);
+// let srcPath = "E:/Pepcoding/WebDevelopment/JS/NODE/File Organizer/Downloads"
+// // organize("./wcat/wcat.js");
+// organize(srcPath);
+module.exports={
+    organize:organize
+}

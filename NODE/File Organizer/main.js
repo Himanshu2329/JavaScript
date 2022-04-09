@@ -1,5 +1,7 @@
 //  entry point of my command line
 let helpfuntion=require("./help");
+// const organize = require("./organize");
+let organ =require("./organize");
 // console.log(helpfuntion.hathi());
 let inputArr=process.argv.slice(2);
 let command=inputArr[0];
@@ -13,7 +15,8 @@ switch (command) {
         break;
     case "organize":
         // call organize function
-        console.log("Organized Function Called and Executed Successfully"+path);
+        organ.organize(path)
+        // console.log("Organized Function Called and Executed Successfully"+path);
 
         break;
     case "help":
