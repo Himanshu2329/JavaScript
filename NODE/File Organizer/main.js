@@ -2,14 +2,16 @@
 let helpfuntion=require("./help");
 // const organize = require("./organize");
 let organ =require("./organize");
+let trs=require("./Tree")
 // console.log(helpfuntion.hathi());
 let inputArr=process.argv.slice(2);
 let command=inputArr[0];
 let path=inputArr[1];
 switch (command) {
     case "tree":
+        trs.tree(path)
         // call tree function
-        console.log("Tree Function Called and Executed Successfully on  path "+path);
+        // console.log("Tree Function Called and Executed Successfully on  path "+path);
 
         
         break;
