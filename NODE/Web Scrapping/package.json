@@ -1,15 +1,16 @@
 {
   "name": "web-scrapping",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Learning to extract data from website",
+  "main": "request.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Himanshu",
   "license": "ISC",
   "dependencies": {
+    "cherio": "^1.0.0-rc.2",
     "l": "^0.6.0",
     "request": "^2.88.2"
   }
