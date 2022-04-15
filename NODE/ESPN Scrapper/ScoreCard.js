@@ -35,10 +35,18 @@ function getMatchDetail(html){
     console.log(VenueOfMatch);
     
     // 2) get date
-    // 3) get Team Name
-    // 4) get Result
+    // 3) get Result
     let ResultOFmatch=selecTool(`[class="ds-text-tight-m ds-font-regular ds-truncate ds-text-typo-title"] span`)
     console.log(ResultOFmatch.text());
+    // 4) get Team Name
+    let TeamNames=selecTool(".ds-text-ui-typo.ds-block>.ds-text-tight-l.ds-font-bold")
+    console.log(TeamNames.text());
+    let team1=selecTool(TeamNames[0]).text()
+    let team2=selecTool(TeamNames[1]).text()
+
+    console.log(team1);
+    console.log(team2);
+
 }
 module.exports={
     gifs:getInfoFromScoreCard 
