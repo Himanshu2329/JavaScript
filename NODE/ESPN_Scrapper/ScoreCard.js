@@ -1,7 +1,10 @@
 const request=require("request")
 const cheerio=require("cheerio");
-const { get } = require("request");
-const { find } = require("cheerio/lib/api/traversing");
+// const { get } = require("request");
+const xlsx=require("xlsx")
+const path=require("path")
+const fs=require("fs")
+// const { find } = require("cheerio/lib/api/traversing");
 
 
 function getInfoFromScoreCard(url) {
@@ -51,7 +54,7 @@ function getMatchDetail(html){
     // 5. get innings
     // let BattingRows=selecTool(`.ds-w-full.ds-table.ds-table-xs.ds-table-fixed.ci-scorecard-table>tbody>tr`)
     let BattingRows=selecTool(`.ds-w-full.ds-table.ds-table-xs.ds-table-fixed.ci-scorecard-table>tbody`)
-    console.log(BattingRows.length);
+    // console.log(BattingRows.length);
     // console.log(BattingRows.text());
     let bathtml="";
     
@@ -99,13 +102,71 @@ function getMatchDetail(html){
                 let numofsis=selecTool(row.find("td")[6]).text();
                 let sr=selecTool(row.find("td")[7]).text();
 
-                console.log(`Player Name ->${playername} |Runs Scored-> ${runs} |Number of Balls-> ${balls} |Number of fours-> ${numofFour} | Number of six-> ${numofsis} |Strike Rate-> ${sr}`);
+                // console.log(`Player Name ->${playername} |Runs Scored-> ${runs} |Number of Balls-> ${balls} |Number of fours-> ${numofFour} | Number of six-> ${numofsis} |Strike Rate-> ${sr}`);
+
+                // let teamNaam=path.join(__dirname,"IPL",team2);
+                // if(!fs.existsSync(teamNaam)){
+                //     fs.mkdirSync(teamNaam)
+                // }
+                processInfo(
+                    DateOfMatch,
+                    VenueOfMatch,
+                    ResultOFmatch,
+                    team1,
+                    team2,
+                    playername,
+                    runs,
+                    balls,
+                    numofFour,
+                    numofsis,
+                    sr
+                )
             }
         }
         // for(let allRows=0;allRows<BattingRows[i].length;allRows++){
 
     }
+    function processInfo(DateOfMatch,VenueOfMatch,ResultOFmatch,team1,team2,playername,runs,balls,numofFour,numofsis,sr) {
+        let teamNaam=path.join(__dirname,"IPL",team2);
+        if(!fs.existsSync(teamNaam)){
+            fs.mkdirSync(teamNaam)
+        }
+        let playerPath=path.join(teamNaam,playername+".xlsx")
+        let content=  excelReader(playerPath,playername);
 
+        let playerObj={
+            DateOfMatch,
+            VenueOfMatch,
+            ResultOFmatch,
+            team1,
+            team2,
+            playername,
+            runs,
+            balls,
+            numofFour,
+            numofsis,
+            sr
+        }
+        content.push(playerObj)
+        excelWritter(playerPath,content,playername)
+    }
+    
+}
+function excelReader(playerpath,playername) {
+    if(!fs.existsSync(playerpath)){
+        return [];
+    }
+}
+
+function excelWritter(playerPath,jsObject,sheetName) {
+    let newWorKbook=xlsx.utils.book_new();
+
+    let newWorkSheet=xlsx.utils.json_to_sheet(jsObject);  
+    
+    
+    // it appends a worksheet to a workbook basically sheets add krne ke liye
+    xlsx.utils.book_append_sheet(newWorKbook,newWorkSheet,sheetName);
+    xlsx.writeFile(newWorKbook,playerPath)
 }
 module.exports={
     gifs:getInfoFromScoreCard 
