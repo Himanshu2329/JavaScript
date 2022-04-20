@@ -130,7 +130,7 @@ function getMatchDetail(html){
         let teamNaam=path.join(__dirname,"IPL",team2);
         if(!fs.existsSync(teamNaam)){
             fs.mkdirSync(teamNaam)
-        }
+        }     
         let playerPath=path.join(teamNaam,playername+".xlsx")
         let content=  excelReader(playerPath,playername);
 
@@ -152,10 +152,14 @@ function getMatchDetail(html){
     }
     
 }
-function excelReader(playerpath,playername) {
+function excelReader(playerpath,sheetName) {
     if(!fs.existsSync(playerpath)){
         return [];
     }
+    let workbook=xlsx.readFile(playerpath);
+    let excelData=workbook.Sheets[sheetName]; 
+    let playerObj=xlsx.utils.sheet_to_json(excelData);
+    return playerObj;
 }
 
 function excelWritter(playerPath,jsObject,sheetName) {
